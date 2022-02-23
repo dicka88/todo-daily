@@ -39,8 +39,8 @@ export default function Yesterday() {
             )}
 
             {todos.length == 0 &&
-              <div>
-                Masih kosong ini cuy
+              <div className='text-gray mb-6'>
+                Nothing task is created
               </div>
             }
 
@@ -51,7 +51,10 @@ export default function Yesterday() {
 
             {/* task field */}
             {addState &&
-              <TaskField setAddState={setAddState} />
+              <TaskField
+                afterSubmit={() => setAddState(false)}
+                onCancel={() => setAddState(false)}
+              />
             }
 
           </div>

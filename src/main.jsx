@@ -7,7 +7,6 @@ import store, { persistor } from './redux/store';
 
 // CSS
 import "./styles/index.css";
-import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>

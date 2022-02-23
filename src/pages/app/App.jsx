@@ -37,6 +37,14 @@ export default function App() {
               />
             )}
 
+
+            {todos.length == 0 &&
+              <div className='text-gray mb-6'>
+                Nothing task is created
+              </div>
+            }
+
+
             {/* add task */}
             {!addState &&
               <AddTask setAddState={setAddState} />
@@ -44,7 +52,11 @@ export default function App() {
 
             {/* task field */}
             {addState &&
-              <TaskField setAddState={setAddState} />
+              <TaskField
+                setAddState={setAddState}
+                afterSubmit={() => setAddState(false)}
+                onCancel={() => setAddState(false)}
+              />
             }
 
           </div>
