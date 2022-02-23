@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/slices/todosSlice";
+import { addTodo, updateTodo } from "../redux/slices/todosSlice";
 
-const TaskField = ({ setAddState }) => {
+const TaskField = ({ id, task, completed, description, afterSubmit, onCancel }) => {
   const dispatch = useDispatch();
   const initialFormState = {
-    task: '',
-    description: ''
+    task,
+    description
   };
   const [form, setForm] = useState(initialFormState);
 
@@ -19,16 +19,20 @@ const TaskField = ({ setAddState }) => {
   };
 
   const handleCancel = () => {
-    setAddState(false);
     setForm(initialFormState);
+    onCancel();
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (!form.task) return;
 
-    dispatch(addTodo(form));
-    setAddState(false);
+    if (id) {
+      dispatch(updateTodo({ id, todo: form }));
+    } else {
+      dispatch(addTodo(form));
+    }
+    afterSubmit();
   };
 
   return (
@@ -43,13 +47,27 @@ const TaskField = ({ setAddState }) => {
           <div className='border bg-grayLight border-graySoft rounded-md w-full flex justify-between mb-4'>
             <div className='w-full'>
               <div className="mb-2 border-b border-[#cfcfcf] py-2 px-4">
-                <input type="text" className="font-bold bg-transparent w-full outline-none" autoComplete="off" autoCapitalize="on" name="task" onChange={handleInputChange} placeholder='Task title' />
+                <input type="text"
+                  className="font-bold bg-transparent w-full outline-none"
+                  autoComplete="off"
+                  autoCapitalize="on"
+                  autoFocus
+                  name="task"
+                  value={form.task}
+                  onChange={handleInputChange}
+                  placeholder='Task title'
+                />
               </div>
-              <textarea className="w-full resize-none bg-transparent outline-none px-4 text-gray" name="description" onChange={handleInputChange} placeholder='Description'></textarea>
+              <textarea
+                className="w-full resize-none bg-transparent outline-none px-4 text-gray"
+                name="description"
+                value={form.description}
+                onChange={handleInputChange}
+                placeholder='Description'></textarea>
             </div>
           </div>
           <button type="submit" className='bg-primary text-white rounded-md p-1 px-4 mr-4'>
-            Add task
+            Save
           </button>
           <button className='border border-primary text-primary rounded-md p-1 px-4' onClick={handleCancel}>
             Cancel
