@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import IndexPage from "./pages";
 import AppPage from "./pages/app/App";
+import Upcoming from "./pages/app/Upcoming";
 import Yesterday from "./pages/app/Yesterday";
 import NotFound from "./pages/NotFound";
 import Signin from "./pages/Signin";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/app" element={<AppPage />} />
         <Route path="/app/yesterday" element={<Yesterday />} />
+        <Route path="/app/upcoming" element={<Upcoming />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

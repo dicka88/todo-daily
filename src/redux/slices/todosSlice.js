@@ -14,15 +14,21 @@ const todosSlice = createSlice({
   ],
   reducers: {
     addTodo(state, action) {
-      const { task, description } = action.payload;
+      const { task, description, time } = action.payload;
+
+      console.log({
+        task, description, time
+      });
 
       state.push({
         id: state.length + 1,
         task,
         description,
         completed: false,
-        time: new Date().getTime()
+        time: time || new Date().getTime()
       });
+
+      console.log(state);
     },
     updateTodo(state, action) {
       const { id, todo } = action.payload;

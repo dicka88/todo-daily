@@ -5,9 +5,20 @@
 
 html,
 body {
-  font-size: 16px;
+  font-size: 14px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .font-rosario {
   font-family: "Rosario", sans-serif;
+}
+
+input:checked + div {
+  @apply border-primary;
+}
+input:checked + div svg {
+  @apply opacity-100;
 }

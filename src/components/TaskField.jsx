@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo, updateTodo } from "../redux/slices/todosSlice";
 
-const TaskField = ({ id, task, completed, description, afterSubmit, onCancel }) => {
+const TaskField = ({ id, task, completed, time, description, afterSubmit, onCancel }) => {
   const dispatch = useDispatch();
   const initialFormState = {
     task,
-    description
+    description,
+    time
   };
   const [form, setForm] = useState(initialFormState);
 
@@ -66,7 +67,7 @@ const TaskField = ({ id, task, completed, description, afterSubmit, onCancel }) 
                 placeholder='Description'></textarea>
             </div>
           </div>
-          <button type="submit" className='bg-primary text-white rounded-md p-1 px-4 mr-4'>
+          <button type="submit" disabled={!form.task} className='bg-primary  text-white rounded-md p-1 px-4 mr-2 disabled:bg-red-400'>
             Save
           </button>
           <button className='border border-primary text-primary rounded-md p-1 px-4' onClick={handleCancel}>
