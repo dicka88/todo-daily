@@ -7,11 +7,12 @@ import store, { persistor } from './redux/store';
 
 // CSS
 import "./styles/index.css";
+import LoadingScreen from './components/LoadingScreen';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={<LoadingScreen />} persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
