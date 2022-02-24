@@ -22,7 +22,7 @@ export default function Yesterday() {
       <Appbar />
       <div className="flex">
         <Sidebar active='yesterday' />
-        <div className="container mx-auto py-8 px-12">
+        <div className="container max-w-screen-lg py-8 px-12">
           <h1 className="text-primary font-bold text-[32px] mb-4">Yesterday</h1>
           <span>{completedCount} / {todos.length} completed</span>
 
@@ -38,9 +38,9 @@ export default function Yesterday() {
               />
             )}
 
-            {todos.length == 0 &&
+            {todos.length == 0 && !addState &&
               <div className='text-gray mb-6'>
-                Nothing task is created
+                <img src="/empty.svg" className='mx-auto' alt="Empty todos" />
               </div>
             }
 

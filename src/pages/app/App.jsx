@@ -21,7 +21,7 @@ export default function App() {
       <Appbar />
       <div className="flex">
         <Sidebar />
-        <div className="container mx-auto py-8 px-12">
+        <div className="container max-w-screen-lg py-8 px-12">
           <h1 className="text-primary font-bold text-[32px] mb-4">Today</h1>
           <span>{completedCount} / {todos.length} completed</span>
 
@@ -38,16 +38,17 @@ export default function App() {
             )}
 
 
-            {todos.length == 0 &&
+            {todos.length == 0 && !addState &&
               <div className='text-gray mb-6'>
-                Nothing task is created
+                <img src="/empty.svg" className='mx-auto' alt="Empty todos" />
               </div>
             }
 
-
             {/* add task */}
             {!addState &&
-              <AddTask setAddState={setAddState} />
+              <div className={todos.length == 0 ? `text-center` : ''}>
+                <AddTask setAddState={setAddState} />
+              </div>
             }
 
             {/* task field */}
