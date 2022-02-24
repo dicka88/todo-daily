@@ -5,6 +5,17 @@ import Navbar from '../components/Navbar';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Fade from 'react-reveal/Fade';
 
+const StepItem = ({ title, img }) => {
+  return (
+    <div className='text-center transition-all duration-200 hover:scale-105'>
+      <div className="mx-auto border-4 border-primary rounded-md flex items-center aspect-square max-w-[120px] p-6 mb-3">
+        <img className="mx-auto w-[70px] h-[70px]" src={img} alt={title} />
+      </div>
+      <span className="font-bold text-[1.5rem]">{title}</span>
+    </div>
+  );
+};
+
 export default function index() {
   return (
     <div className="container lg:max-w-[1280px] mx-auto">
@@ -19,7 +30,7 @@ export default function index() {
             </h1>
           </Fade>
           <Link to="/app">
-            <PrimaryButton>
+            <PrimaryButton className={"text-[1.5rem]"}>
               Get started
             </PrimaryButton>
           </Link>
@@ -36,35 +47,23 @@ export default function index() {
         <div className="py-20">
           <div className="flex flex-wrap justify-center">
             <Fade bottom>
-              <div className='basis-1/2 md:basis-1/4 mb-4 text-center'>
-                <div className="mx-auto border-2 border-primary rounded-md flex items-center aspect-square max-w-[150px] p-6 mb-3">
-                  <img className="mx-auto w-[70px] h-[70px]" src="/icons/task.svg" alt="task" />
-                </div>
-                <span className="font-bold">Small task</span>
+              <div className='basis-1/2 md:basis-1/4 mb-4 '>
+                <StepItem title="Small task" img="/icons/task.svg" />
               </div>
             </Fade>
-            <Fade bottom delay={200}>
-              <div className='basis-1/2 md:basis-1/4 mb-4 text-center'>
-                <div className="mx-auto border-2 border-primary rounded-md flex items-center aspect-square max-w-[150px] p-6 mb-3">
-                  <img className="mx-auto w-[70px] h-[70px]" src="/icons/edit.svg" alt="task" />
-                </div>
-                <span className="font-bold">Write it</span>
+            <Fade bottom delay="200">
+              <div className='basis-1/2 md:basis-1/4 mb-4 '>
+                <StepItem title="Write it" img="/icons/edit.svg" />
               </div>
             </Fade>
-            <Fade bottom delay={400}>
-              <div className='basis-1/2 md:basis-1/4 mb-4 text-center'>
-                <div className="mx-auto border-2 border-primary rounded-md flex items-center aspect-square max-w-[150px] p-6 mb-3">
-                  <img className="mx-auto w-[70px] h-[70px]" src="/icons/work-history.svg" alt="task" />
-                </div>
-                <span className="font-bold">Do it</span>
+            <Fade bottom delay="300">
+              <div className='basis-1/2 md:basis-1/4 mb-4 '>
+                <StepItem title="Do it" img="/icons/work-history.svg" />
               </div>
             </Fade>
-            <Fade bottom delay={600}>
-              <div className='basis-1/2 md:basis-1/4 mb-4 text-center'>
-                <div className="mx-auto border-2 border-primary rounded-md flex items-center aspect-square max-w-[150px] p-6 mb-3">
-                  <img className="mx-auto w-[70px] h-[70px]" src="/icons/event-repeat.svg" alt="task" />
-                </div>
-                <span className="font-bold">Repeat</span>
+            <Fade bottom delay="400">
+              <div className='basis-1/2 md:basis-1/4 mb-4 '>
+                <StepItem title="Repeat" img="/icons/event-repeat.svg" />
               </div>
             </Fade>
           </div>
