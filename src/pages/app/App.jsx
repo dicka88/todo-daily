@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddTask from '../../components/AddTask';
 import Appbar from "../../components/Appbar";
+import LoadingScreen from '../../components/LoadingScreen';
 
 import Sidebar from '../../components/Sidebar';
 import TaskField from '../../components/TaskField';
 import TodoList from '../../components/TodoList';
+import { selectLoadingState } from '../../redux/slices/appSlice';
 import { selector } from '../../redux/slices/todosSlice';
 
 export default function App() {
@@ -28,7 +30,7 @@ export default function App() {
           <div className='py-4'>
             {todos.map(item =>
               <TodoList
-                key={item.time}
+                key={item.id}
                 id={item.id}
                 task={item.task}
                 description={item.description}
@@ -36,7 +38,6 @@ export default function App() {
                 completed={item.completed}
               />
             )}
-
 
             {todos.length == 0 && !addState &&
               <div className='text-gray mb-6'>

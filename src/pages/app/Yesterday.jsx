@@ -13,7 +13,7 @@ import { selector } from '../../redux/slices/todosSlice';
 export default function Yesterday() {
   const [addState, setAddState] = useState(false);
 
-  const yesterday = dayjs(new Date()).subtract(1, 'day');
+  const yesterday = dayjs(new Date()).subtract(1, 'day').format('YYYY-MM-DD');
   const todos = useSelector(selector.getTodos(yesterday));
   const completedCount = todos.filter(todo => todo.completed).length;
 
@@ -42,19 +42,6 @@ export default function Yesterday() {
               <div className='text-gray mb-6'>
                 <img src="/empty.svg" className='mx-auto' alt="Empty todos" />
               </div>
-            }
-
-            {/* add task */}
-            {!addState &&
-              <AddTask setAddState={setAddState} />
-            }
-
-            {/* task field */}
-            {addState &&
-              <TaskField
-                afterSubmit={() => setAddState(false)}
-                onCancel={() => setAddState(false)}
-              />
             }
 
           </div>
