@@ -3,12 +3,11 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { BsFillPencilFill, BsThreeDots, BsArchive, BsPause } from 'react-icons/bs';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch } from 'react-redux';
-import { removeTodo, updateTodo } from '../redux/slices/todosSlice';
+import { fetchRemoveTodo, fetchUpdateTodo, removeTodo, updateTodo } from '../redux/slices/todosSlice';
 import TaskField from './TaskField';
 
 const TodoList = ({
   id,
-  time,
   task,
   description,
   completed
@@ -22,7 +21,7 @@ const TodoList = ({
   };
 
   const handleCheckboxChanged = (id, completed) => {
-    dispatch(updateTodo({
+    dispatch(fetchUpdateTodo({
       id,
       todo: {
         completed: !completed
@@ -31,7 +30,7 @@ const TodoList = ({
   };
 
   const handleRemove = (id) => {
-    dispatch(removeTodo({ id }));
+    dispatch(fetchRemoveTodo(id));
   };
 
   if (editState) return (
@@ -64,18 +63,18 @@ const TodoList = ({
           <h1 className="font-bold">{task}</h1>
           <p className="text-gray">{description}</p>
         </div>
-        <div className="flex items-center text-gray transition-all duration-200 opacity-0 group-hover:opacity-100">
+        <div className={`flex items-center text-gray transition-all duration-200 ${dropdownOpen ? '' : 'opacity-0'} group-hover:opacity-100`}>
           <button className='rounded-full p-2 transition-colors duration-300 hover:bg-graySoft' onClick={() => setEditState(true)}>
             <BsFillPencilFill />
           </button>
           <button className="rounded-full p-2 transition-colors duration-300 hover:bg-graySoft" onClick={handleDropdownFocus}>
             <BsThreeDots />
           </button>
-          <OutsideClickHandler
-            onOutsideClick={() => dropdownOpen && handleDropdownFocus()}
-          >
-            <div className="relative">
-              <div className={`absolute top-4 rounded-md right-0 border border-graySoft transition-all duration-400 bg-white ${dropdownOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+          <div className="relative">
+            <OutsideClickHandler
+              onOutsideClick={() => dropdownOpen && handleDropdownFocus()}
+            >
+              <div className={`absolute z-10 top-4 rounded-md right-0 border border-graySoft transition-all duration-400 bg-white ${dropdownOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
                 <div className='px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center'>
                   <BsArchive size={16} className="mr-4 inline" />
                   <span>Archive</span>
@@ -87,8 +86,8 @@ const TodoList = ({
                   </div>
                 </button>
               </div>
-            </div>
-          </OutsideClickHandler>
+            </OutsideClickHandler>
+          </div>
         </div>
       </div>
     </div>

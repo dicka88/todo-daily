@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo, updateTodo } from "../redux/slices/todosSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/slices/authSlice";
+import { fetchAddTodo, fetchUpdateTodo, } from "../redux/slices/todosSlice";
 
-const TaskField = ({ id, task, completed, time, description, afterSubmit, onCancel }) => {
+const TaskField = ({ id, task, date, description, afterSubmit, onCancel }) => {
+  const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const initialFormState = {
-    task,
-    description,
-    time
+    uid: user.uid,
+    task: "",
+    date,
+    description: "",
   };
   const [form, setForm] = useState(initialFormState);
 
@@ -29,9 +33,14 @@ const TaskField = ({ id, task, completed, time, description, afterSubmit, onCanc
     if (!form.task) return;
 
     if (id) {
-      dispatch(updateTodo({ id, todo: form }));
+      dispatch(fetchUpdateTodo({
+        id, todo: {
+          task: form.task,
+          description: form.description
+        }
+      }));
     } else {
-      dispatch(addTodo(form));
+      dispatch(fetchAddTodo(form));
     }
     afterSubmit();
   };
