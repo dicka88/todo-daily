@@ -51,17 +51,17 @@ export default function index() {
                 <StepItem title="Small task" img="/icons/task.svg" />
               </div>
             </Fade>
-            <Fade bottom delay="200">
+            <Fade bottom delay={200}>
               <div className='basis-1/2 md:basis-1/4 mb-4 '>
                 <StepItem title="Write it" img="/icons/edit.svg" />
               </div>
             </Fade>
-            <Fade bottom delay="300">
+            <Fade bottom delay={300}>
               <div className='basis-1/2 md:basis-1/4 mb-4 '>
                 <StepItem title="Do it" img="/icons/work-history.svg" />
               </div>
             </Fade>
-            <Fade bottom delay="400">
+            <Fade bottom delay={400}>
               <div className='basis-1/2 md:basis-1/4 mb-4 '>
                 <StepItem title="Repeat" img="/icons/event-repeat.svg" />
               </div>
