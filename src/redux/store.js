@@ -4,14 +4,23 @@ import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import storage from 'redux-persist/lib/storage';
 import todosSlice from "./slices/todosSlice";
+import authSlice from './slices/authSlice';
+import syncSlice from "./slices/syncSlice";
+import appSlice from "./slices/appSlice";
 
 const persistConfig = {
-  key: 'todos-daily',
-  storage
+  key: 'todo-daily',
+  storage,
+  blacklist: [
+    'sync'
+  ]
 };
 
 const reducers = combineReducers({
-  todos: todosSlice
+  app: appSlice,
+  todos: todosSlice,
+  auth: authSlice,
+  sync: syncSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
