@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import dayjs from 'dayjs';
 import { todoService } from "../../services/todoService";
@@ -9,6 +10,40 @@ export const fetchTodos = createAsyncThunk(
     const todos = await todoService.getTodos(id);
 
     return todos;
+  }
+);
+
+export const subscribeTodosChange = createAsyncThunk(
+  'todos/subscribeTodosChange',
+  async (id, { dispatch }) => {
+    todoService.subscribeTodosChange(id, (snapshot) => {
+      // prevent add 2x
+      if (snapshot.metadata.hasPendingWrites) return;
+
+      snapshot.docChanges().forEach((change) => {
+        const { type } = change;
+        const { id } = change.doc;
+        const data = change.doc.data();
+
+        const todo = {
+          ...data,
+          createdAt: data.createdAt.toDate()
+        };
+
+        console.log(type, todo);
+
+        if (type == "added") {
+          dispatch(addTodo(todo));
+        } else if (type == "modified") {
+          dispatch(updateTodo({
+            id,
+            todo
+          }));
+        } else if (type == "removed") {
+          dispatch(removeTodo({ id }));
+        }
+      });
+    });
   }
 );
 

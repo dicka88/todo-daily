@@ -7,7 +7,7 @@ import { logout } from '../services/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, setLogout } from '../redux/slices/authSlice';
 import { selectSync, setSync } from '../redux/slices/syncSlice';
-import { fetchTodos } from '../redux/slices/todosSlice';
+import { fetchTodos, subscribeTodosChange } from '../redux/slices/todosSlice';
 import { selectSidebarOpen, setApp } from '../redux/slices/appSlice';
 
 export default function Appbar() {
@@ -29,6 +29,7 @@ export default function Appbar() {
   const syncAllData = useCallback(async () => {
     if (!isSynced) {
       dispatch(setApp({ loadingState: true }));
+      dispatch(subscribeTodosChange(user.uid));
       await dispatch(fetchTodos(user.uid));
       dispatch(setSync(true));
       dispatch(setApp({ loadingState: false }));

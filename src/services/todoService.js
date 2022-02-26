@@ -1,10 +1,12 @@
-import { getDocs, collection, query, where, setDoc, addDoc, doc, getDoc, updateDoc, deleteDoc, orderBy, FieldPath, documentId } from "firebase/firestore";
+import { getDocs, collection, query, where, addDoc, doc, getDoc, updateDoc, deleteDoc, orderBy, documentId, onSnapshot } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 const todosRef = collection(db, "todos");
 
 const getTodos = async (uid) => {
-  const querySnapshot = await getDocs(query(todosRef, orderBy(documentId()), where('uid', '==', uid)));
+  const queryTodos = query(todosRef, orderBy(documentId()), where('uid', '==', uid));
+
+  const querySnapshot = await getDocs(queryTodos);
 
   const todos = [];
   querySnapshot.forEach((doc) => {
@@ -21,6 +23,12 @@ const getTodos = async (uid) => {
   });
 
   return todos;
+};
+
+const subscribeTodosChange = (uid, callback) => {
+  const queryTodos = query(todosRef, orderBy(documentId()), where('uid', '==', uid));
+
+  onSnapshot(queryTodos, callback);
 };
 
 const getTodosByDate = async (date) => {
@@ -67,6 +75,7 @@ const removeTodo = async (id) => {
 
 export const todoService = {
   getTodos,
+  subscribeTodosChange,
   getTodosByDate,
   getTodoById,
   addTodo,
