@@ -11,7 +11,7 @@ const StepItem = ({ title, img }) => {
       <div className="mx-auto border-4 border-primary rounded-md flex items-center aspect-square max-w-[120px] p-6 mb-3">
         <img className="mx-auto w-[70px] h-[70px]" src={img} alt={title} />
       </div>
-      <span className="font-bold text-[1.5rem]">{title}</span>
+      <span className="font-bold text-[1.2rem]">{title}</span>
     </div>
   );
 };
@@ -24,7 +24,7 @@ export default function index() {
       <section className='pt-4 pb-12 relative'>
         <div className="pt-8 text-center  absolute top-0 w-full">
           <Fade bottom>
-            <h1 className="text-lg leading-normal font-bold font-rosario text-[40px] mb-4">
+            <h1 className="text-lg leading-normal font-bold font-rosario text-[2rem] md:text-[40px] mb-4">
               Organizing your day activity <br />
               with Todo Daily
             </h1>
@@ -41,7 +41,7 @@ export default function index() {
       </section >
 
       <section className='py-4 text-center'>
-        <h1 className='text-lg font-bold text-[36px] mb-6'>
+        <h1 className='text-lg font-bold text-[2rem] md:text-[40px] mb-6'>
           Don’t let your day doing nothing
         </h1>
         <div className="py-20">
@@ -76,7 +76,7 @@ export default function index() {
             <img className="" src="/productive.png" alt="" />
           </div>
           <div className="pt-4 text-center md:text-left">
-            <h1 className="font-bold font-rosario text-[36px] mb-4">Achieve your target <br /> and won your time</h1>
+            <h1 className="font-bold font-rosario text-[2rem] md:text-[36px] mb-4">Achieve your target <br /> and won your time</h1>
             <Link to="/app">
               <PrimaryButton>
                 Get started
