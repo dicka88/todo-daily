@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -12,7 +13,7 @@ import { selector } from '../../redux/slices/todosSlice';
 export default function App() {
   const [addState, setAddState] = useState(false);
 
-  const today = new Date();
+  const today = dayjs().format('YYYY-MM-DD');
   const todos = useSelector(selector.getTodos(today));
   const completedCount = todos.filter(todo => todo.completed).length;
 
@@ -26,13 +27,12 @@ export default function App() {
           <span>{completedCount} / {todos.length} completed</span>
 
           <div className='py-4'>
-            {todos.map(item =>
+            {todos.map((item, i) =>
               <TodoList
-                key={item.id}
+                key={i}
                 id={item.id}
                 task={item.task}
                 description={item.description}
-                time={item.time}
                 completed={item.completed}
               />
             )}

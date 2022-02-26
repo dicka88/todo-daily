@@ -10,8 +10,8 @@ export default function Sidebar({ active = "today" }) {
   const dispatch = useDispatch();
   const sidebarOpen = useSelector(selectSidebarOpen);
 
-  const today = new Date();
-  const yesterday = dayjs(today).subtract(1, 'day').format('YYYY-MM-DD');
+  const today = dayjs().format('YYYY-MM-DD');
+  const yesterday = dayjs().subtract(1, 'day').format('YYYY-MM-DD');
 
   const todoTodayCount = useSelector(selector.getTodos(today)).length;
   const todoYesterdayCount = useSelector(selector.getTodos(yesterday)).length;
@@ -22,7 +22,7 @@ export default function Sidebar({ active = "today" }) {
         className={`w-full h-full md:visible top-0 ${sidebarOpen ? 'md:w-auto' : 'w-0 invisible'} transition-transform duration-300 fixed md:static z-10 bg-black md:bg-transparent bg-opacity-60`}
         onClick={() => dispatch(setApp({ sidebarOpen: false }))}
       />
-      <div className={`bg-grayLight left-0 top-0 md:top-[48px] ${sidebarOpen ? '' : '-translate-x-full invisible w-0'} fixed md:static z-10 transition-transform duration-300 py-4 md:py-8 p-6 w-[250px] h-full md:h-[calc(100vh-48px)]`}>
+      <div className={`bg-grayLight left-0 top-0 md:top-[48px] ${sidebarOpen ? '' : '-translate-x-full invisible w-0'} fixed md:static z-10 transition-all duration-300 py-4 md:py-8 p-6 w-[250px] h-full md:h-[calc(100vh-48px)]`}>
         <div className="md:hidden flex justify-end mb-4">
           <button onClick={() => dispatch(setApp({ sidebarOpen: false }))}>
             <IoCloseOutline size={24} />

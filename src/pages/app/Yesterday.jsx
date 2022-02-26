@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import React from 'react';
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import Appbar from "../../components/Appbar";
 
@@ -9,9 +8,8 @@ import TodoList from '../../components/TodoList';
 import { selector } from '../../redux/slices/todosSlice';
 
 export default function Yesterday() {
-  const [addState, setAddState] = useState(false);
+  const yesterday = dayjs().subtract(1, 'd').format('YYYY-MM-DD');
 
-  const yesterday = dayjs(new Date()).subtract(1, 'day').format('YYYY-MM-DD');
   const todos = useSelector(selector.getTodos(yesterday));
   const completedCount = todos.filter(todo => todo.completed).length;
 
@@ -25,18 +23,17 @@ export default function Yesterday() {
           <span>{completedCount} / {todos.length} completed</span>
 
           <div className='py-4'>
-            {todos.map(item =>
+            {todos.map((item, i) =>
               <TodoList
-                key={item.id}
+                key={i}
                 id={item.id}
                 task={item.task}
                 description={item.description}
-                time={item.time}
                 completed={item.completed}
               />
             )}
 
-            {todos.length == 0 && !addState &&
+            {todos.length == 0 &&
               <div className='text-gray mb-6'>
                 <img src="/empty.svg" className='mx-auto' alt="Empty todos" />
               </div>

@@ -64,7 +64,6 @@ export default function Upcoming() {
                 id={item.id}
                 task={item.task}
                 description={item.description}
-                time={item.time}
                 completed={item.completed}
               />
             )}
