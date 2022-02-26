@@ -9,7 +9,6 @@ import Upcoming from "./pages/app/Upcoming";
 import Yesterday from "./pages/app/Yesterday";
 import NotFound from "./pages/NotFound";
 import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
 import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
 
