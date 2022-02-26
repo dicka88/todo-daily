@@ -38,6 +38,7 @@ const TodoList = ({
   useOnClickOutside(dropdownRef, () => dropdownOpen && setDropdownOpen(false));
 
   useEffect(async () => {
+    if (id == null) return;
     const unsubscribe = await todoService.subscribeTodoChange(id, (doc) => {
       const todo = doc.data();
 

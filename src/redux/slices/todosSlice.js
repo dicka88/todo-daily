@@ -46,9 +46,14 @@ export const fetchAddTodo = createAsyncThunk(
     data.createdAt = new Date();
 
     try {
+      dispatch(addTodo({
+        ...data,
+        id: null
+      }));
+
       const { id } = await todoService.addTodo(data);
-      data.id = id;
-      dispatch(addTodo(data));
+
+      dispatch(updateTodo({ id: null, todo: { ...data, id } }));
     } catch (e) {
       console.log(err);
     }
@@ -84,7 +89,7 @@ const todosSlice = createSlice({
       const { id, task, description, date, createdAt } = action.payload;
 
       state.push({
-        id: id,
+        id,
         task,
         description,
         date,
