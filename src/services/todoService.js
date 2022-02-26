@@ -28,7 +28,12 @@ const getTodos = async (uid) => {
 const subscribeTodosChange = (uid, callback) => {
   const queryTodos = query(todosRef, orderBy(documentId()), where('uid', '==', uid));
 
-  onSnapshot(queryTodos, callback);
+  return onSnapshot(queryTodos, callback);
+};
+
+const subscribeTodoChange = (id, callback) => {
+  const queryTodos = doc(db, 'todos', id);
+  return onSnapshot(queryTodos, callback);
 };
 
 const getTodosByDate = async (date) => {
@@ -76,6 +81,7 @@ const removeTodo = async (id) => {
 export const todoService = {
   getTodos,
   subscribeTodosChange,
+  subscribeTodoChange,
   getTodosByDate,
   getTodoById,
   addTodo,

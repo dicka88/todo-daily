@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { BsFillPencilFill, BsThreeDots, BsArchive } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import useOnClickOutside from 'use-onclickoutside';
-import { fetchRemoveTodo, fetchUpdateTodo } from '../redux/slices/todosSlice';
+import { fetchRemoveTodo, fetchUpdateTodo, removeTodo, updateTodo } from '../redux/slices/todosSlice';
+import { todoService } from '../services/todoService';
 import TaskField from './TaskField';
 
 const TodoList = ({
@@ -35,6 +36,25 @@ const TodoList = ({
   };
 
   useOnClickOutside(dropdownRef, () => dropdownOpen && setDropdownOpen(false));
+
+  useEffect(async () => {
+    const unsubscribe = await todoService.subscribeTodoChange(id, (doc) => {
+      const todo = doc.data();
+
+      if (!todo) {
+        dispatch(removeTodo({ id }));
+      } else {
+        dispatch(updateTodo({
+          id,
+          todo
+        }));
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   if (editState) return (
     <TaskField
