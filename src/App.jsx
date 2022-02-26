@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
         <Route path="/signin" element={<WhenAuth children={<Signin />} />} />
-        <Route path="/signup" element={<WhenAuth children={<Signup />} />} />
+        {/* <Route path="/signup" element={<WhenAuth children={<Signup />} />} /> */}
         <Route path="/app" element={<AuthRoute children={<AppPage />} />} />
         <Route path="/app/yesterday" element={<AuthRoute children={<Yesterday />} />} />
         <Route path="/app/upcoming" element={<AuthRoute children={<Upcoming />} />} />

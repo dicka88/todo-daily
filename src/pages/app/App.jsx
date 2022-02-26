@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AddTask from '../../components/AddTask';
 import Appbar from "../../components/Appbar";
-import LoadingScreen from '../../components/LoadingScreen';
 
 import Sidebar from '../../components/Sidebar';
 import TaskField from '../../components/TaskField';
 import TodoList from '../../components/TodoList';
-import { selectLoadingState } from '../../redux/slices/appSlice';
 import { selector } from '../../redux/slices/todosSlice';
 
 export default function App() {

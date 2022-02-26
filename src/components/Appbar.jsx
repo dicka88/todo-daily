@@ -9,7 +9,6 @@ import { selectUser, setLogout } from '../redux/slices/authSlice';
 import { selectSync, setSync } from '../redux/slices/syncSlice';
 import { fetchTodos } from '../redux/slices/todosSlice';
 import { selectSidebarOpen, setApp } from '../redux/slices/appSlice';
-import { setPersistence } from 'firebase/auth';
 
 export default function Appbar() {
   const dispatch = useDispatch();
@@ -27,11 +26,9 @@ export default function Appbar() {
     await logout();
   };
 
-
-  useEffect(async () => {
+  useEffect(() => {
     if (!isSynced) {
-      dispatch(setApp({ loadingState: true }));
-      await dispatch(fetchTodos(user.uid));
+      dispatch(fetchTodos(user.uid));
       dispatch(setSync(true));
       dispatch(setApp({ loadingState: false }));
     }

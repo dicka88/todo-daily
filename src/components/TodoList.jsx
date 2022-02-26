@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { BsFillPencilFill, BsThreeDots, BsArchive, BsPause } from 'react-icons/bs';
+import { BsFillPencilFill, BsThreeDots, BsArchive } from 'react-icons/bs';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch } from 'react-redux';
-import { fetchRemoveTodo, fetchUpdateTodo, removeTodo, updateTodo } from '../redux/slices/todosSlice';
+import { fetchRemoveTodo, fetchUpdateTodo } from '../redux/slices/todosSlice';
 import TaskField from './TaskField';
 
 const TodoList = ({

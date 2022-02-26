@@ -14,7 +14,14 @@ export default function Signin() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(result => {
-      const user = { ...result.user, isLogged: true };
+      const { uid, displayName, photoURL } = result.user;
+
+      const user = {
+        uid,
+        displayName,
+        photoURL,
+        isLogged: true
+      };
 
       dispatch(setUser(user));
       navigate('/app');

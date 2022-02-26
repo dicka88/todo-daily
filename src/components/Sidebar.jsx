@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selector } from '../redux/slices/todosSlice';
 import dayjs from 'dayjs';
 import { selectSidebarOpen, setApp } from '../redux/slices/appSlice';
-import OutsideClickHandler from 'react-outside-click-handler';
 
 export default function Sidebar({ active = "today" }) {
   const dispatch = useDispatch();

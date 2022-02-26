@@ -78,9 +78,7 @@ const todosSlice = createSlice({
     },
     updateTodo(state, action) {
       const { id, todo } = action.payload;
-      console.log(action.payload);
       const index = state.findIndex(item => item.id == id);
-      console.log({ ...state[index], ...todo });
       state[index] = { ...state[index], ...todo };
     },
     removeTodo(state, action) {

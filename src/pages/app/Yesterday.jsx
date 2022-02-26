@@ -2,11 +2,9 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import AddTask from '../../components/AddTask';
 import Appbar from "../../components/Appbar";
 
 import Sidebar from '../../components/Sidebar';
-import TaskField from '../../components/TaskField';
 import TodoList from '../../components/TodoList';
 import { selector } from '../../redux/slices/todosSlice';
 
@@ -29,7 +27,7 @@ export default function Yesterday() {
           <div className='py-4'>
             {todos.map(item =>
               <TodoList
-                key={item.time}
+                key={item.id}
                 id={item.id}
                 task={item.task}
                 description={item.description}
