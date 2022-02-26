@@ -14,11 +14,12 @@ export default function Signin() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then(result => {
-      const { uid, displayName, photoURL } = result.user;
+      const { uid, displayName, photoURL, email } = result.user;
 
       const user = {
         uid,
         displayName,
+        email,
         photoURL,
         isLogged: true
       };
@@ -43,16 +44,19 @@ export default function Signin() {
 
   return (
     <div className="bg-grayLight h-[100vh]">
-      <div className="py-24">
-        <div className="mx-auto max-w-[512px] bg-white border border-graySoft p-8">
+      <div className="md:py-24">
+        <div className="mx-auto max-w-[512px] h-screen md:h-auto bg-white border border-graySoft p-8">
           <div className="mb-6">
             <Link to="/">
-              <img src="/logo.png" alt="" />
+              <img src="/logo.png" alt="Todo Daily" className='max-h-[30px]' />
             </Link>
           </div>
           <h1 className="font-bold text-[24px] mb-6">Signin</h1>
           <div className='mb-2'>
-            <button className="border w-full block border-graySoft rounded p-2 mb-2 transition-colors duration-300 hover:border-primary" onClick={handleGoogleSignin}>
+            <div className="text-center mb-4 text-gray">
+              Easy login with one tap
+            </div>
+            <button className="border w-full block border-graySoft rounded p-2 mb-2 transition-colors duration-300 hover:border-graySoft hover:bg-grayLight" onClick={handleGoogleSignin}>
               <FcGoogle className='inline mr-4' size={24} />
               <span>
                 Continue using Google
@@ -67,7 +71,7 @@ export default function Signin() {
           </div>
           <hr className="border-graySoft mt-12 mb-4" />
           <div className="text-center">
-            Not have an account ? <Link to="/signup" className="text-primary">Signup</Link>
+            {/* Not have an account ? <Link to="/signup" className="text-primary">Signup</Link> */}
           </div>
         </div>
       </div>
