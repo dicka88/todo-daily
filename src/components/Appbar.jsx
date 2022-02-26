@@ -9,6 +9,7 @@ import { selectUser, setLogout } from '../redux/slices/authSlice';
 import { selectSync, setSync } from '../redux/slices/syncSlice';
 import { fetchTodos, subscribeTodosChange } from '../redux/slices/todosSlice';
 import { selectSidebarOpen, setApp } from '../redux/slices/appSlice';
+import { persistor } from '../redux/store';
 
 export default function Appbar() {
   const dispatch = useDispatch();
@@ -22,8 +23,10 @@ export default function Appbar() {
 
   const handleLogout = async () => {
     dispatch(setLogout());
+    persistor.purge();
+    logout();
+
     navigate('/');
-    await logout();
   };
 
   const syncAllData = useCallback(async () => {
@@ -64,13 +67,16 @@ export default function Appbar() {
             </div>
           </button>
           <div className="relative">
-            <div className={`absolute rounded-md right-0 border border-graySoft transition-all z-10 duration-400 min-w-[170px] bg-white ${dropdownProfileOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+            <div className={`absolute rounded-lg right-0 border top-2 border-graySoft shadow-stone-300 shadow-lg transition-all z-10 duration-400 min-w-[200px] bg-white ${dropdownProfileOpen ? 'visible opacity-100' : 'invisible opacity-0'}`}>
               <div className="flex items-center p-4 border-b border-graySoft">
                 <div className="mr-4">
                   <img className="rounded-full max-h-[35px]" src={user.photoURL} alt={user.displayName} />
                 </div>
                 <div className="whitespace-nowrap text-gray overflow-ellipsis">
-                  {user.displayName}
+                  <h1>
+                    {user.displayName}
+                  </h1>
+                  <small>{user.email}</small>
                 </div>
               </div>
               <Link to="/app/profile">
@@ -82,7 +88,7 @@ export default function Appbar() {
               <Link to="/app/setting">
                 <div className='px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center'>
                   <BsGearFill size={16} className="mr-4 inline" />
-                  <span>Setting</span>
+                  <span>Settings</span>
                 </div>
               </Link>
               <hr className='border-graySoft' />
