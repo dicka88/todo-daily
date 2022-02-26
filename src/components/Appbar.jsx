@@ -32,8 +32,8 @@ export default function Appbar() {
       await dispatch(fetchTodos(user.uid));
       dispatch(setSync(true));
       dispatch(setApp({ loadingState: false }));
+      dispatch(setApp({ loadingState: false }));
     }
-    dispatch(setApp({ loadingState: false }));
   }, [isSynced]);
 
   useMemo(() => {
