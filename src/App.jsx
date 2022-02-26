@@ -9,6 +9,9 @@ import Upcoming from "./pages/app/Upcoming";
 import Yesterday from "./pages/app/Yesterday";
 import NotFound from "./pages/NotFound";
 import Signin from "./pages/Signin";
+import Profile from "./pages/app/Profile";
+import Preference from "./pages/app/Preference";
+
 import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -26,8 +29,8 @@ function App() {
         <Route path="/app" element={<AuthRoute children={<AppPage />} />} />
         <Route path="/app/yesterday" element={<AuthRoute children={<Yesterday />} />} />
         <Route path="/app/upcoming" element={<AuthRoute children={<Upcoming />} />} />
-        <Route path="/app/profile" element={<AuthRoute children={<Upcoming />} />} />
-        <Route path="/app/preference" element={<AuthRoute children={<Upcoming />} />} />
+        <Route path="/app/profile" element={<AuthRoute children={<Profile />} />} />
+        <Route path="/app/preference" element={<AuthRoute children={<Preference />} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
