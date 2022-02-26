@@ -9,7 +9,6 @@ import Sidebar from '../../components/Sidebar';
 import TaskField from '../../components/TaskField';
 import TodoList from '../../components/TodoList';
 import { selector } from '../../redux/slices/todosSlice';
-import ScrollArea from 'react-scrollbar';
 
 export default function Upcoming() {
   const tommorow = dayjs().add(1, 'day').format('YYYY-MM-DD');
@@ -39,24 +38,22 @@ export default function Upcoming() {
         <div className="container max-w-screen-lg py-8 px-12">
           <h1 className="text-primary font-bold text-[32px] mb-4">Upcoming</h1>
 
-          <ScrollArea horizontal minScrollSize={2} horizontalScrollbarStyle={{ width: '2px' }}>
-            <div className="flex mb-4 overflow-x-auto">
-              {days.map(day =>
-                <div key={day} className="min-w-[100px] max-w-[100px] basis-1/4 md:basis-1/7" onClick={() => handleDateClick(day)}>
-                  <div className={`flex justify-center transition-colors duration-300 items-center aspect-square hover:bg-graySoft cursor-pointer ${dateActive == day ? 'bg-graySoft border-b-4 border-primary' : ''}`}>
-                    <div className='text-center'>
-                      <small className='text-gray'>{dayjs(day).format('ddd')}</small>
+          <div className="flex mb-4 overflow-x-auto">
+            {days.map(day =>
+              <div key={day} className="min-w-[100px] max-w-[100px] basis-1/4 md:basis-1/7" onClick={() => handleDateClick(day)}>
+                <div className={`flex justify-center transition-colors duration-300 items-center aspect-square hover:bg-graySoft cursor-pointer ${dateActive == day ? 'bg-graySoft border-b-4 border-primary' : ''}`}>
+                  <div className='text-center'>
+                    <small className='text-gray'>{dayjs(day).format('ddd')}</small>
 
-                      <h1 className="text-primary font-bold text-[28px]">
-                        {dayjs(day).format('D')}
-                      </h1>
-                      <small className='text-gray'>{dayjs(day).format('MMM YYYY')}</small>
-                    </div>
+                    <h1 className="text-primary font-bold text-[28px]">
+                      {dayjs(day).format('D')}
+                    </h1>
+                    <small className='text-gray'>{dayjs(day).format('MMM YYYY')}</small>
                   </div>
                 </div>
-              )}
-            </div>
-          </ScrollArea>
+              </div>
+            )}
+          </div>
 
           <span>{completedCount} / {todos.length} completed</span>
 
