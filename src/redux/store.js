@@ -16,14 +16,21 @@ const persistConfig = {
   ]
 };
 
-const reducers = combineReducers({
+const combinedReducer = combineReducers({
   app: appSlice,
   todos: todosSlice,
   auth: authSlice,
   sync: syncSlice
 });
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const rootReducer = (state, action) => {
+  if (action.type === 'auth/setLogout') {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,

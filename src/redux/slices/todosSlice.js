@@ -8,7 +8,6 @@ export const fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
   async (id) => {
     const todos = await todoService.getTodos(id);
-
     return todos;
   }
 );
@@ -78,9 +77,11 @@ export const fetchRemoveTodo = createAsyncThunk(
   }
 );
 
+const initialState = [];
+
 const todosSlice = createSlice({
   name: "todos",
-  initialState: [],
+  initialState,
   reducers: {
     replaceState(state, { payload }) {
       return payload;
