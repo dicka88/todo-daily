@@ -97,14 +97,9 @@ export const { addTodo, updateTodo, removeTodo, replaceState } = todosSlice.acti
 
 export const selector = {
   getTodos: (date) => {
-    if (!date) {
-      date = new Date();
-    }
-
     return (state) => {
-      const dt = dayjs(date).format('YYYY-MM-DD');
       const todos = state.todos.filter(item => {
-        return dt == item.date;
+        return date == item.date;
       });
 
       return todos;
