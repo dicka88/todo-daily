@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler/build/OutsideClickHandler';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsPersonFill, BsGearFill, BsList } from 'react-icons/bs';
@@ -26,12 +26,21 @@ export default function Appbar() {
     await logout();
   };
 
-  useEffect(() => {
+  const syncAllData = useCallback(async () => {
     if (!isSynced) {
-      dispatch(fetchTodos(user.uid));
+      dispatch(setApp({ loadingState: true }));
+      await dispatch(fetchTodos(user.uid));
       dispatch(setSync(true));
       dispatch(setApp({ loadingState: false }));
     }
+    dispatch(setApp({ loadingState: false }));
+  }, [isSynced]);
+
+  useMemo(() => {
+    syncAllData();
+  }, []);
+
+  useEffect(() => {
   }, []);
 
   return (
