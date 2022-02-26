@@ -67,7 +67,7 @@ const TodoList = ({
           <h1 className="font-bold">{task}</h1>
           <p className="text-gray">{description}</p>
         </div>
-        <div ref={dropdownRef} className={`flex items-center text-gray transition-all duration-200 ${dropdownOpen ? '' : 'opacity-0'} group-hover:opacity-100`}>
+        <div ref={dropdownRef} className={`flex items-center text-gray transition-all duration-200 ${dropdownOpen ? '' : 'md:opacity-0'} group-hover:opacity-100`}>
           <button className='rounded-full p-2 transition-colors duration-300 hover:bg-graySoft' onClick={() => setEditState(true)}>
             <BsFillPencilFill />
           </button>
