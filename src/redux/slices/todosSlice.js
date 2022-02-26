@@ -15,48 +15,28 @@ export const fetchTodos = createAsyncThunk(
 
 export const subscribeTodosChange = createAsyncThunk(
   'todos/subscribeTodosChange',
-  async (id, { dispatch }) => {
-    todoService.subscribeTodosChange(id, (snapshot) => {
+  async (uid, { dispatch }) => {
+    todoService.subscribeTodosChange(uid, (snapshot) => {
       // prevent add 2x
       if (snapshot.metadata.hasPendingWrites) return;
 
       snapshot.docChanges().forEach((change) => {
         const { type } = change;
-        const { id } = change.doc;
         const data = change.doc.data();
 
         const todo = {
+          id: change.doc.id,
           ...data,
           createdAt: data.createdAt.toDate()
         };
 
-        console.log(type, todo);
-
         if (type == "added") {
           dispatch(addTodo(todo));
-        } else if (type == "modified") {
-          dispatch(updateTodo({
-            id,
-            todo
-          }));
-        } else if (type == "removed") {
-          dispatch(removeTodo({ id }));
         }
       });
     });
   }
 );
-
-// export const fetchTodosByDate = createAsyncThunk(
-//   'todos/fetchTodosByDate',
-//   async (date, thunkApi) => {
-//     const todos = await todoService.getTodosByDate(date);
-//     todos.map(todo => {
-//       thunkApi.dispatch(addTodo(todo));
-//     });
-//     // return { date, todos };
-//   }
-// );
 
 export const fetchAddTodo = createAsyncThunk(
   'todos/fetchAddTodo',
@@ -66,8 +46,9 @@ export const fetchAddTodo = createAsyncThunk(
     data.createdAt = new Date();
 
     try {
+      const { id } = await todoService.addTodo(data);
+      data.id = id;
       dispatch(addTodo(data));
-      const res = await todoService.addTodo(data);
     } catch (e) {
       console.log(err);
     }
@@ -100,10 +81,10 @@ const todosSlice = createSlice({
       return payload;
     },
     addTodo(state, action) {
-      const { task, description, date, createdAt } = action.payload;
+      const { id, task, description, date, createdAt } = action.payload;
 
       state.push({
-        id: state.length + 1,
+        id: id,
         task,
         description,
         date,
