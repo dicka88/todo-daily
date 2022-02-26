@@ -9,9 +9,9 @@ const TaskField = ({ id, task, date, description, afterSubmit, onCancel }) => {
   const dispatch = useDispatch();
   const initialFormState = {
     uid: user.uid,
-    task: "",
+    task: task || "",
     date,
-    description: "",
+    description: description || "",
   };
   const [form, setForm] = useState(initialFormState);
 
