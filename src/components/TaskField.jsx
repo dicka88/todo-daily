@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/slices/authSlice";
 import { fetchAddTodo, fetchUpdateTodo, } from "../redux/slices/todosSlice";
+import PrimaryButton from "./ui/PrimaryButton";
+import SecondaryButton from "./ui/SecondaryButton";
 
 const TaskField = ({ id, task, date, description, afterSubmit, onCancel }) => {
   const user = useSelector(selectUser);
@@ -76,12 +78,12 @@ const TaskField = ({ id, task, date, description, afterSubmit, onCancel }) => {
                 placeholder='Description'></textarea>
             </div>
           </div>
-          <button type="submit" disabled={!form.task} className='bg-primary  text-white rounded-md p-1 px-4 mr-2 disabled:bg-red-400'>
+          <PrimaryButton disabled={!form.task} type="submit" className={"py-1 px-4 mr-2"}>
             Save
-          </button>
-          <button className='border border-primary text-primary rounded-md p-1 px-4' onClick={handleCancel}>
+          </PrimaryButton>
+          <SecondaryButton className='border border-primary text-primary rounded-md p-1 px-4' onClick={handleCancel}>
             Cancel
-          </button>
+          </SecondaryButton>
         </form>
       </div>
     </div>
