@@ -3,7 +3,7 @@ import OutsideClickHandler from 'react-outside-click-handler/build/OutsideClickH
 import { Link, useNavigate } from 'react-router-dom';
 import { BsPersonFill, BsGearFill, BsList } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
-import { logout } from '../services/firebase';
+import { logout } from '../services/authService';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, setLogout } from '../redux/slices/authSlice';
 import { selectSync, setSync } from '../redux/slices/syncSlice';
