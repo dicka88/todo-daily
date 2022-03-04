@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loadingState: false,
   preferences: {
+    language: "en",
     darkMode: false
   },
   sidebarOpen: true
