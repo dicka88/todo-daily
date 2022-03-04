@@ -7,8 +7,10 @@ import PrimaryButton from "../../components/ui/PrimaryButton";
 import Sidebar from "../../components/Sidebar";
 import SecondaryButton from "../../components/ui/SecondaryButton";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   // console.log(user);
@@ -53,28 +55,28 @@ export default function Profile() {
           </div>
           <form onSubmit={handleOnSubmit}>
             <div className="mb-4">
-              <label className="mb-2 font-semibold">Name</label>
+              <label className="mb-2 font-semibold">{t("name")}</label>
               <Input
                 name="displayName"
-                placeholder="Enter your name"
+                placeholder={t("namePlaceholder")}
                 value={form.displayName}
                 onChange={handleInputChange}
               />
             </div>
             <div className="mb-4">
-              <label className="mb-2 font-semibold">Password</label>
+              <label className="mb-2 font-semibold">{t("password")}</label>
               <Input
                 name="password"
-                placeholder="Enter your password"
+                placeholder={t("passwordPlaceholder")}
                 value={form.password}
                 onChange={handleInputChange}
               />
             </div>
             <PrimaryButton type="submit" className="mr-4">
-              Save
+              {t("save")}
             </PrimaryButton>
             <Link to="/app">
-              <SecondaryButton>Cancel</SecondaryButton>
+              <SecondaryButton>{t("cancel")}</SecondaryButton>
             </Link>
           </form>
         </div>

@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 import AddTask from "../../components/AddTask";
@@ -11,6 +12,7 @@ import TodoList from "../../components/TodoList";
 import { selector } from "../../redux/slices/todosSlice";
 
 export default function Upcoming() {
+  const { t } = useTranslation();
   const tommorow = dayjs().add(1, "day").format("YYYY-MM-DD");
 
   const [addState, setAddState] = useState(false);
@@ -36,7 +38,9 @@ export default function Upcoming() {
       <div className="flex">
         <Sidebar active="future" />
         <div className="container max-w-screen-lg py-8 px-12">
-          <h1 className="text-primary font-bold text-[32px] mb-4">Upcoming</h1>
+          <h1 className="text-primary font-bold text-[32px] mb-4">
+            {t("menuUpcoming")}
+          </h1>
 
           <div className="flex mb-4 overflow-x-auto">
             {days.map((day) => (
@@ -54,11 +58,11 @@ export default function Upcoming() {
                 >
                   <div className="text-center">
                     <small className="text-gray">
-                      {dayjs(day).format("ddd")}
+                      {dayjs(day).locale("id").format("ddd")}
                     </small>
 
                     <h1 className="text-primary font-bold text-[28px]">
-                      {dayjs(day).format("D")}
+                      {dayjs(day).locale("id").format("D")}
                     </h1>
                     <small className="text-gray">
                       {dayjs(day).format("MMM YYYY")}
@@ -70,7 +74,7 @@ export default function Upcoming() {
           </div>
 
           <span>
-            {completedCount} / {todos.length} completed
+            {completedCount} / {todos.length} {t("completed")}
           </span>
 
           <div className="py-4">

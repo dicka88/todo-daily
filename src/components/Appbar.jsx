@@ -14,8 +14,10 @@ import {
   setApp,
 } from "../redux/slices/appSlice";
 import { persistor } from "../redux/store";
+import { useTranslation } from "react-i18next";
 
 export default function Appbar() {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,6 +27,9 @@ export default function Appbar() {
   const sidebarOpen = useSelector(selectSidebarOpen);
   const user = useSelector(selectUser);
   const darkMode = useSelector(selectPreferences).darkMode;
+  const language = useSelector(selectPreferences).language;
+
+  console.log(language);
 
   const handleLogout = async () => {
     dispatch(setLogout());
@@ -42,6 +47,18 @@ export default function Appbar() {
         },
       })
     );
+  };
+
+  const handleToggleLanguage = () => {
+    const lang = language == "id" ? "en" : "id";
+    dispatch(
+      setApp({
+        preferences: {
+          language: lang,
+        },
+      })
+    );
+    i18n.changeLanguage(lang);
   };
 
   const syncAllData = useCallback(async () => {
@@ -109,45 +126,70 @@ export default function Appbar() {
                 </div>
               </div>
               <div
-                className="mx-4 my-2 bg-graySoft dark:bg-neutral-700 flex rounded-lg justify-between cursor-pointer"
+                className="mx-4 my-2 bg-graySoft dark:bg-neutral-700 flex rounded-lg justify-between cursor-pointer relative"
+                onClick={handleToggleLanguage}
+              >
+                <div
+                  className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
+                    language == "en" && "text-white"
+                  } `}
+                >
+                  EN
+                </div>
+                <div
+                  className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
+                    language == "id" && "text-white"
+                  }`}
+                >
+                  ID
+                </div>
+                <span
+                  className={`absolute transition-transform duration-300 bg-black dark:bg-white top-0 bottom-0 w-1/2 rounded-lg ${
+                    language == "id" && "translate-x-full"
+                  }`}
+                />
+              </div>
+              <div
+                className="mx-4 my-2 bg-graySoft dark:bg-neutral-700 flex rounded-lg justify-between cursor-pointer relative"
                 onClick={handleToggleDarkMode}
               >
                 <div
-                  className={`px-2 w-full py-1 rounded-lg text-center ${
-                    !darkMode
-                      ? "bg-black text-white"
-                      : "bg-graySoft dark:bg-neutral-700"
+                  className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
+                    !darkMode && "text-white"
                   } `}
                 >
-                  Light
+                  {t("light")}
                 </div>
                 <div
-                  className={`px-2 w-full py-1 rounded-lg text-center ${
-                    darkMode
-                      ? "bg-black text-white"
-                      : "bg-graySoft dark:bg-neutral-700"
+                  className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
+                    darkMode && "text-black"
                   }`}
                 >
-                  Dark
+                  {t("dark")}
                 </div>
+                <span
+                  className={`absolute transition-transform duration-300 bg-black dark:bg-white top-0 bottom-0 w-1/2 rounded-lg ${
+                    darkMode && "translate-x-full"
+                  }`}
+                />
               </div>
               <Link to="/app/profile">
                 <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
                   <BsPersonFill size={16} className="mr-4 inline" />
-                  <span>Profile</span>
+                  <span>{t("profile")}</span>
                 </div>
               </Link>
               <Link to="/app/setting">
                 <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
                   <BsGearFill size={16} className="mr-4 inline" />
-                  <span>Settings</span>
+                  <span>{t("settings")}</span>
                 </div>
               </Link>
               <hr className="border-graySoft" />
               <button className="w-full" onClick={handleLogout}>
                 <div className="text-primary px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
                   <FiLogOut size={16} className="mr-4 inline" />
-                  <span>Logout</span>
+                  <span>{t("logout")}</span>
                 </div>
               </button>
             </div>

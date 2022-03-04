@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import AddTask from "../../components/AddTask";
 import Appbar from "../../components/Appbar";
@@ -11,6 +12,7 @@ import TodoList from "../../components/TodoList";
 import { selector } from "../../redux/slices/todosSlice";
 
 export default function App() {
+  const { t, i18n } = useTranslation();
   const [addState, setAddState] = useState(false);
 
   const today = dayjs().format("YYYY-MM-DD");
@@ -23,9 +25,11 @@ export default function App() {
       <div className="flex">
         <Sidebar />
         <div className="container max-w-screen-lg py-8 px-12">
-          <h1 className="text-primary font-bold text-[32px] mb-4">Today</h1>
+          <h1 className="text-primary font-bold text-[32px] mb-4">
+            {t("menuToday")}
+          </h1>
           <span>
-            {completedCount} / {todos.length} completed
+            {completedCount} / {todos.length} {t("completed")}
           </span>
 
           <div className="py-4">

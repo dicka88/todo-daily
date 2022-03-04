@@ -10,8 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { selector } from "../redux/slices/todosSlice";
 import dayjs from "dayjs";
 import { selectSidebarOpen, setApp } from "../redux/slices/appSlice";
+import { useTranslation } from "react-i18next";
 
 export default function Sidebar({ active = "today" }) {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const sidebarOpen = useSelector(selectSidebarOpen);
 
@@ -47,7 +50,7 @@ export default function Sidebar({ active = "today" }) {
           >
             <IoCalendarClear size={22} className="mr-4" />
             <div className="flex items-center justify-between w-full">
-              <span>Today</span>
+              <span>{t("menuToday")}</span>
               <small>{todoTodayCount > 0 ? todoTodayCount : ""}</small>
             </div>
           </div>
@@ -62,7 +65,7 @@ export default function Sidebar({ active = "today" }) {
           >
             <IoCalendar size={22} className="mr-4" />
             <div className="flex items-center justify-between w-full">
-              <span>Yesterday</span>
+              <span>{t("menuYesterday")}</span>
               <small>{todoYesterdayCount ? todoYesterdayCount : ""}</small>
             </div>
           </div>
@@ -75,7 +78,7 @@ export default function Sidebar({ active = "today" }) {
           >
             <IoCalendarNumber size={22} className="mr-4" />
             <div className="flex items-center justify-between w-full">
-              <span>Upcoming</span>
+              <span>{t("menuUpcoming")}</span>
             </div>
           </div>
         </Link>

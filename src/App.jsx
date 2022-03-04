@@ -1,5 +1,8 @@
+import { useEffect, useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 
 import AuthRoute from "./components/auth/AuthRoute";
 import WhenAuth from "./components/auth/WhenAuth";
@@ -12,28 +15,51 @@ import Signin from "./pages/Signin";
 import Profile from "./pages/app/Profile";
 import Preference from "./pages/app/Preference";
 
-import { selectLoadingState } from "./redux/slices/appSlice";
+import { selectLoadingState, selectPreferences } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { i18n } = useTranslation();
   const loadingState = useSelector(selectLoadingState);
+  const darkMode = useSelector(selectPreferences).darkMode;
+  const language = useSelector(selectPreferences).language;
+
+  useMemo(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+
+    i18n.changeLanguage(language);
+  }, [darkMode]);
 
   if (loadingState) return <LoadingScreen />;
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
-        <Route path="/signin" element={<WhenAuth children={<Signin />} />} />
-        {/* <Route path="/signup" element={<WhenAuth children={<Signup />} />} /> */}
-        <Route path="/app" element={<AuthRoute children={<AppPage />} />} />
-        <Route path="/app/yesterday" element={<AuthRoute children={<Yesterday />} />} />
-        <Route path="/app/upcoming" element={<AuthRoute children={<Upcoming />} />} />
-        <Route path="/app/profile" element={<AuthRoute children={<Profile />} />} />
-        <Route path="/app/preference" element={<AuthRoute children={<Preference />} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300">
+      <I18nextProvider i18n={i18n}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
+            <Route
+              path="/signin"
+              element={<WhenAuth children={<Signin />} />}
+            />
+            {/* <Route path="/signup" element={<WhenAuth children={<Signup />} />} /> */}
+            <Route element={<AuthRoute />}>
+              <Route path="/app" element={<AppPage />} />
+              <Route path="/app/yesterday" element={<Yesterday />} />
+              <Route path="/app/upcoming" element={<Upcoming />} />
+              <Route path="/app/profile" element={<Profile />} />
+              <Route path="/app/preference" element={<Preference />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </I18nextProvider>
+    </div>
   );
 }
 
