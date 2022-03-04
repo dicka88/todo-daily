@@ -1,0 +1,23 @@
+{
+  "initializing": "initializing",
+  "menuToday": "Today",
+  "menuYesterday": "Yesterday",
+  "menuUpcoming": "Upcoming",
+  "addTask": "Add Task",
+  "completed": "Completed",
+  "save": "Save",
+  "cancel": "Cancel",
+  "light": "Light",
+  "dark": "Dark",
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Logout",
+  "name": "Name",
+  "namePlaceholder": "Enter your name",
+  "password": "Password",
+  "passwordPlaceholder": "Enter your password",
+  "taskTitle": "Task title",
+  "description": "Description",
+  "delete": "Delete",
+  "archive": "Archive"
+}

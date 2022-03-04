@@ -1,0 +1,23 @@
+{
+  "initializing": "Menginisialisasi",
+  "menuToday": "Hari ini",
+  "menuYesterday": "Kemarin",
+  "menuUpcoming": "Akan datang",
+  "addTask": "Tambah tugas",
+  "completed": "Selesai",
+  "save": "Simpan",
+  "cancel": "Batal",
+  "light": "Terang",
+  "dark": "Gelap",
+  "profile": "Profil",
+  "settings": "Pengaturan",
+  "logout": "Keluar",
+  "name": "Nama",
+  "namePlaceholder": "Masukkan namamu",
+  "password": "Kata sandi",
+  "passwordPlaceholder": "Masukkan kata sandi",
+  "taskTitle": "Judul tugas",
+  "description": "Deskripsi",
+  "delete": "Hapus",
+  "archive": "Arsip"
+}
