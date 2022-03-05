@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
+import i18nRoot from "./i18n";
 
 import AuthRoute from "./components/auth/AuthRoute";
 import WhenAuth from "./components/auth/WhenAuth";
@@ -31,15 +31,17 @@ function App() {
     } else {
       document.body.classList.remove("dark");
     }
-
-    i18n.changeLanguage(language);
   }, [darkMode]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, []);
 
   if (loadingState) return <LoadingScreen />;
 
   return (
     <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300">
-      <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={i18nRoot}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
