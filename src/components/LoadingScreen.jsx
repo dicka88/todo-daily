@@ -10,9 +10,13 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     // Loading screen timeout
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       dispatch(setApp({ loadingState: false }));
     }, LOADING_TIMEOUT);
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
