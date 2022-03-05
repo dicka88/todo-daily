@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Appbar from "../../components/Appbar";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+
 import { selectUser } from "../../redux/slices/authSlice";
+
+import Appbar from "../../components/ui/Appbar";
+import Sidebar from "../../components/Sidebar";
 import Input from "../../components/ui/Input";
 import PrimaryButton from "../../components/ui/PrimaryButton";
-import Sidebar from "../../components/Sidebar";
 import SecondaryButton from "../../components/ui/SecondaryButton";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export default function Profile() {
   const { t } = useTranslation();
