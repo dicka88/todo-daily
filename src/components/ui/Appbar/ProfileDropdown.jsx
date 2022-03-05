@@ -89,14 +89,14 @@ export default function ProfileDropdown() {
             >
               <div
                 className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
-                  preferences.language == "id" && "text-white"
+                  preferences.language == "en" && "text-white dark:text-black"
                 } `}
               >
                 EN
               </div>
               <div
                 className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
-                  preferences.language == "id" && "text-white"
+                  preferences.language == "id" && "text-white dark:text-black"
                 }`}
               >
                 ID
