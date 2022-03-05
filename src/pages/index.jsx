@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Fade from 'react-reveal/Fade';
+
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import PrimaryButton from '../components/ui/PrimaryButton';
-import Fade from 'react-reveal/Fade';
 
 const StepItem = ({ title, img }) => {
   return (
