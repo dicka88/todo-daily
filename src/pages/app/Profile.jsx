@@ -74,7 +74,7 @@ export default function Profile() {
                 onChange={handleInputChange}
               />
             </div>
-            <PrimaryButton type="submit" className="mr-4">
+            <PrimaryButton type="submit" className="mr-4 py-1 px-4">
               {t("save")}
             </PrimaryButton>
             <Link to="/app">

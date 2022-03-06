@@ -93,7 +93,7 @@ const TaskField = ({ id, task, date, description, afterSubmit, onCancel }) => {
             type="submit"
             className={"py-1 px-4 mr-2"}
           >
-            {t("save")})
+            {t("save")}
           </PrimaryButton>
           <SecondaryButton
             className="border border-primary text-primary rounded-md p-1 px-4"

@@ -21,7 +21,6 @@ const authSlice = createSlice({
 export const fetchUpdateUser = createAsyncThunk(
   'auth/fetchUpdateUser',
   async ({ uid, data }, { dispatch }) => {
-    //  const await 
     const res = await userService.setUser(uid, data);
 
     dispatch(setUser(data));
