@@ -19,5 +19,7 @@
   "taskTitle": "Judul tugas",
   "description": "Deskripsi",
   "delete": "Hapus",
-  "archive": "Arsip"
+  "archive": "Arsip",
+  "preferences": "Preferensi",
+  "language": "Bahasa"
 }

@@ -19,5 +19,7 @@
   "taskTitle": "Task title",
   "description": "Description",
   "delete": "Delete",
-  "archive": "Archive"
+  "archive": "Archive",
+  "preferences": "Preference",
+  "language": "Language"
 }
