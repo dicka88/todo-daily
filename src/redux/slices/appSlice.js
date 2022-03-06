@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import userService from '../../services/userService';
 
 const initialState = {
   loadingState: false,
@@ -9,8 +10,17 @@ const initialState = {
   sidebarOpen: true
 };
 
+export const fetchUpdateApp = createAsyncThunk(
+  'app/fetchUpdateApp',
+  async ({ uid, data }, { dispatch }) => {
+    dispatch(setApp(data));
+
+    await userService.setUser(uid, data);
+  }
+)
+
 const appSlice = createSlice({
-  name: "appSlice",
+  name: "app",
   initialState,
   reducers: {
     setApp(state, { payload }) {

@@ -1,9 +1,19 @@
-import { doc, updateDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../config/firebase";
 
+const userRef = collection(db, 'users');
+
 const setUser = async (uid, data) => {
-  const ref = doc(db, 'users', where('uid', '==', uid));
-  return await updateDoc(ref, data);
+  try {
+    const q = query(userRef, where('uid', '==', uid))
+    const dc = await getDocs(q)
+
+    dc.forEach((item) => {
+      updateDoc(item.ref, data)
+    })
+  } catch (err) {
+    console.error(err)
+  }
 };
 
 export default {

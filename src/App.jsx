@@ -13,7 +13,7 @@ import Yesterday from "./pages/app/Yesterday";
 import NotFound from "./pages/NotFound";
 import Signin from "./pages/Signin";
 import Profile from "./pages/app/Profile";
-import Preference from "./pages/app/Preference";
+import Settings from "./pages/app/Settings";
 
 import { selectLoadingState, selectPreferences } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
@@ -55,7 +55,7 @@ function App() {
               <Route path="/app/yesterday" element={<Yesterday />} />
               <Route path="/app/upcoming" element={<Upcoming />} />
               <Route path="/app/profile" element={<Profile />} />
-              <Route path="/app/preference" element={<Preference />} />
+              <Route path="/app/settings" element={<Settings />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

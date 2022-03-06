@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
+    "country-flag-icons": "^1.4.21",
     "dayjs": "^1.10.7",
     "firebase": "^9.6.7",
     "i18next": "^21.6.13",
