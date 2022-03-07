@@ -42,7 +42,7 @@ function App() {
   if (loadingState) return <LoadingScreen />;
 
   return (
-    <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300">
+    <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300 min-h-screen">
       <I18nextProvider i18n={i18nRoot}>
         <BrowserRouter>
           <Routes>
