@@ -7,10 +7,12 @@ import {
   IoCloseOutline,
 } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { selector } from "../redux/slices/todosSlice";
 import dayjs from "dayjs";
-import { selectSidebarOpen, setApp } from "../redux/slices/appSlice";
+import { selector } from "../redux/slices/todosSlice";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
+
+import { selectSidebarOpen, setApp } from "../redux/slices/appSlice";
 
 export default function Sidebar({ active = "today" }) {
   const { t } = useTranslation();
@@ -23,6 +25,15 @@ export default function Sidebar({ active = "today" }) {
 
   const todoTodayCount = useSelector(selector.getTodos(today)).length;
   const todoYesterdayCount = useSelector(selector.getTodos(yesterday)).length;
+
+  // Responsive
+  const isMobile = useMediaQuery({ maxWidth: 768 }, null, (isMatch) => {
+    isMatch && dispatch(setApp({ sidebarOpen: false }));
+  });
+
+  const isDesktop = useMediaQuery({ minWidth: 768 }, null, (isMatch) => {
+    isMatch && dispatch(setApp({ sidebarOpen: true }));
+  });
 
   return (
     <>
