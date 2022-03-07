@@ -15,12 +15,14 @@ import Signin from "./pages/Signin";
 import Profile from "./pages/app/Profile";
 import Settings from "./pages/app/Settings";
 
-import { selectLoadingState, selectPreferences } from "./redux/slices/appSlice";
+import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
 import { useTranslation } from "react-i18next";
+import { selectPreferences } from "./redux/slices/authSlice";
 
 function App() {
   const { i18n } = useTranslation();
+
   const loadingState = useSelector(selectLoadingState);
   const darkMode = useSelector(selectPreferences).darkMode;
   const language = useSelector(selectPreferences).language;

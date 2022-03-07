@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { selectUser } from "../../redux/slices/authSlice";
+import { fetchUpdateUser, selectUser } from "../../redux/slices/authSlice";
 
 import Appbar from "../../components/ui/Appbar";
 import Sidebar from "../../components/Sidebar";
@@ -34,7 +34,12 @@ export default function Profile() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    dispatch();
+    dispatch(
+      fetchUpdateUser({
+        uid: user.uid,
+        data: form,
+      })
+    );
   };
 
   return (

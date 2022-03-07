@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-
-import { persistor } from "../../../redux/store";
-
-import { selectUser } from "../../../redux/slices/authSlice";
-import {
-  fetchUpdateApp,
-  selectPreferences,
-  setApp,
-} from "../../../redux/slices/appSlice";
 import { BsGearFill, BsPersonFill } from "react-icons/bs";
 import { FiLogOut } from "react-icons/fi";
 import OutsideClickHandler from "react-outside-click-handler/build/OutsideClickHandler";
+
+import { persistor } from "../../../redux/store";
+
+import {
+  fetchUpdateUser,
+  selectPreferences,
+  selectUser,
+  setLogout,
+} from "../../../redux/slices/authSlice";
+
+import { logout } from "../../../services/authService";
 
 export default function ProfileDropdown() {
   const dispatch = useDispatch();
@@ -31,7 +33,7 @@ export default function ProfileDropdown() {
 
   const handleToggleDarkMode = () => {
     dispatch(
-      fetchUpdateApp({
+      fetchUpdateUser({
         uid: user.uid,
         data: {
           preferences: {

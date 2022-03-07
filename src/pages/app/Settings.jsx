@@ -7,11 +7,10 @@ import Sidebar from "../../components/Sidebar";
 import Appbar from "../../components/ui/Appbar";
 
 import {
-  fetchUpdateApp,
+  fetchUpdateUser,
   selectPreferences,
-  setApp,
-} from "../../redux/slices/appSlice";
-import { selectUser } from "../../redux/slices/authSlice";
+  selectUser,
+} from "../../redux/slices/authSlice";
 
 export default function Settings() {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ export default function Settings() {
   const handleToggleLanguage = () => {
     const lang = preferences.language == "id" ? "en" : "id";
     dispatch(
-      fetchUpdateApp({
+      fetchUpdateUser({
         uid: user.uid,
         data: {
           preferences: {
