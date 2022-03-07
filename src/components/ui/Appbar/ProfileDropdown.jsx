@@ -69,11 +69,12 @@ export default function ProfileDropdown() {
           >
             <div className="flex items-center ro p-4 border-b border-graySoft">
               <div className="mr-4">
-                <img
-                  className="rounded-full max-h-[35px]"
-                  src={user.photoURL}
-                  alt={user.displayName}
-                />
+                <div className="h-[35px] w-[35px] rounded-full bg-graySoft">
+                  <img
+                    className="rounded-full max-h-[35px]"
+                    src={user.photoURL}
+                  />
+                </div>
               </div>
               <div className="whitespace-nowrap text-gray dark:text-white overflow-ellipsis">
                 <h1>{user.displayName}</h1>
@@ -105,20 +106,20 @@ export default function ProfileDropdown() {
               />
             </div>
             <Link to="/app/profile">
-              <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
+              <div className="px-4 hover:bg-graySoft dark:hover:bg-zinc-700 cursor-pointer py-2 flex items-center">
                 <BsPersonFill size={16} className="mr-4 inline" />
                 <span>{t("profile")}</span>
               </div>
             </Link>
             <Link to="/app/settings">
-              <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
+              <div className="px-4 hover:bg-graySoft dark:hover:bg-zinc-700 cursor-pointer py-2 flex items-center">
                 <BsGearFill size={16} className="mr-4 inline" />
                 <span>{t("settings")}</span>
               </div>
             </Link>
             <hr className="border-graySoft" />
             <button className="w-full" onClick={handleLogout}>
-              <div className="text-primary px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
+              <div className="text-primary px-4 hover:bg-graySoft dark:hover:bg-zinc-700 cursor-pointer py-2 flex items-center">
                 <FiLogOut size={16} className="mr-4 inline" />
                 <span>{t("logout")}</span>
               </div>
