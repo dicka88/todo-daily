@@ -1,11 +1,17 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { FcGoogle } from 'react-icons/fc';
-import { SiGithub } from 'react-icons/si';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { FcGoogle } from "react-icons/fc";
+import { SiGithub } from "react-icons/si";
+import { useDispatch } from "react-redux";
 
-import { setUser } from '../redux/slices/authSlice';
+import { setUser } from "../redux/slices/authSlice";
+import { getUser } from "../services/userService";
 
 export default function Signin() {
   const dispatch = useDispatch();
@@ -14,32 +20,28 @@ export default function Signin() {
   const handleGoogleSignin = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then(result => {
-      const { uid, displayName, photoURL, email } = result.user;
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        const user = await getUser(result.user.uid);
 
-      const user = {
-        uid,
-        displayName,
-        email,
-        photoURL,
-        isLogged: true
-      };
+        user.isLogged = true;
 
-      dispatch(setUser(user));
-      navigate('/app');
-    }).catch(err => {
-      console.log(err);
-    });
+        dispatch(setUser(user));
+        navigate("/app");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleGithubSignin = () => {
     const auth = getAuth();
     const provider = new GithubAuthProvider();
-    signInWithPopup(auth, provider).then(result => {
+    signInWithPopup(auth, provider).then((result) => {
       const user = { ...result.user, isLogged: true };
 
       dispatch(setUser(user));
-      navigate('/app');
+      navigate("/app");
     });
   };
 
@@ -49,19 +51,20 @@ export default function Signin() {
         <div className="mx-auto max-w-[512px] h-screen md:h-auto bg-white border border-graySoft p-8">
           <div className="mb-6">
             <Link to="/">
-              <img src="/logo.png" alt="Todo Daily" className='max-h-[30px]' />
+              <img src="/logo.png" alt="Todo Daily" className="max-h-[30px]" />
             </Link>
           </div>
           <h1 className="font-bold text-[24px] mb-6">Signin</h1>
-          <div className='mb-2'>
+          <div className="mb-2">
             <div className="text-center mb-4 text-gray">
               Easy login with one tap
             </div>
-            <button className="border w-full block border-graySoft rounded p-2 mb-2 transition-colors duration-300 hover:border-graySoft hover:bg-grayLight" onClick={handleGoogleSignin}>
-              <FcGoogle className='inline mr-4' size={24} />
-              <span>
-                Continue using Google
-              </span>
+            <button
+              className="border w-full block border-graySoft rounded p-2 mb-2 transition-colors duration-300 hover:border-graySoft hover:bg-grayLight"
+              onClick={handleGoogleSignin}
+            >
+              <FcGoogle className="inline mr-4" size={24} />
+              <span>Continue using Google</span>
             </button>
             {/* <button className="border w-full block border-graySoft rounded p-2 mb-2 transition-colors duration-300 hover:border-primary" onClick={handleGithubSignin}>
               <SiGithub className='inline mr-4' size={24} />
