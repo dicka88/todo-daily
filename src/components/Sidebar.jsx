@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   IoCalendarClear,
@@ -27,13 +27,18 @@ export default function Sidebar({ active = "today" }) {
   const todoYesterdayCount = useSelector(selector.getTodos(yesterday)).length;
 
   // Responsive
-  const isMobile = useMediaQuery({ maxWidth: 768 }, null, (isMatch) => {
-    isMatch && dispatch(setApp({ sidebarOpen: false }));
-  });
+  const isMobile = useMediaQuery({ maxWidth: 768 }, null);
+  const isDesktop = useMediaQuery({ minWidth: 768 }, null);
 
-  const isDesktop = useMediaQuery({ minWidth: 768 }, null, (isMatch) => {
-    isMatch && dispatch(setApp({ sidebarOpen: true }));
-  });
+  useEffect(() => {
+    if (isMobile) {
+      dispatch(setApp({ sidebarOpen: false }));
+    }
+
+    if (isDesktop) {
+      dispatch(setApp({ sidebarOpen: true }));
+    }
+  }, [isMobile, isDesktop]);
 
   return (
     <>
