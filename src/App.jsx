@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { I18nextProvider } from "react-i18next";
-import i18nRoot from "./i18n";
+import { useTranslation } from "react-i18next";
 
 import AuthRoute from "./components/auth/AuthRoute";
 import WhenAuth from "./components/auth/WhenAuth";
@@ -15,10 +15,12 @@ import Signin from "./pages/Signin";
 import Profile from "./pages/app/Profile";
 import Settings from "./pages/app/Settings";
 
+import i18nRoot from "./i18n";
+
 import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
-import { useTranslation } from "react-i18next";
 import { selectPreferences } from "./redux/slices/authSlice";
+import { persistor } from "./redux/store";
 
 function App() {
   const { i18n } = useTranslation();
