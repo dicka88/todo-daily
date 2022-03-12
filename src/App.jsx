@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -25,48 +25,54 @@ import { persistor } from "./redux/store";
 function App() {
   const { i18n } = useTranslation();
 
-  const loadingState = useSelector(selectLoadingState);
-  const darkMode = useSelector(selectPreferences).darkMode;
-  const language = useSelector(selectPreferences).language;
+  try {
+    const loadingState = useSelector(selectLoadingState);
+    const darkMode = useSelector(selectPreferences).darkMode;
+    const language = useSelector(selectPreferences).language;
 
-  useMemo(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-  }, [darkMode]);
+    useMemo(() => {
+      if (darkMode) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }, [darkMode]);
 
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, []);
+    useEffect(() => {
+      i18n.changeLanguage(language);
+    }, []);
 
-  if (loadingState) return <LoadingScreen />;
+    if (loadingState) return <LoadingScreen />;
 
-  return (
-    <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300 min-h-screen">
-      <I18nextProvider i18n={i18nRoot}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
-            <Route
-              path="/signin"
-              element={<WhenAuth children={<Signin />} />}
-            />
-            {/* <Route path="/signup" element={<WhenAuth children={<Signup />} />} /> */}
-            <Route element={<AuthRoute />}>
-              <Route path="/app" element={<AppPage />} />
-              <Route path="/app/yesterday" element={<Yesterday />} />
-              <Route path="/app/upcoming" element={<Upcoming />} />
-              <Route path="/app/profile" element={<Profile />} />
-              <Route path="/app/settings" element={<Settings />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </I18nextProvider>
-    </div>
-  );
+    return (
+      <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300 min-h-screen">
+        <I18nextProvider i18n={i18nRoot}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
+              <Route
+                path="/signin"
+                element={<WhenAuth children={<Signin />} />}
+              />
+              {/* <Route path="/signup" element={<WhenAuth children={<Signup />} />} /> */}
+              <Route element={<AuthRoute />}>
+                <Route path="/app" element={<AppPage />} />
+                <Route path="/app/yesterday" element={<Yesterday />} />
+                <Route path="/app/upcoming" element={<Upcoming />} />
+                <Route path="/app/profile" element={<Profile />} />
+                <Route path="/app/settings" element={<Settings />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </I18nextProvider>
+      </div>
+    );
+  } catch (e) {
+    // Clear cache / storage
+    persistor.purge();
+    return <Navigate to="/" />;
+  }
 }
 
 export default App;
