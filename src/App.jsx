@@ -69,9 +69,10 @@ function App() {
       </div>
     );
   } catch (e) {
+    console.log(e);
     // Clear cache / storage
     persistor.purge();
-    return <Navigate to="/" />;
+    window.location.reload();
   }
 }
 
