@@ -20,7 +20,7 @@ import i18nRoot from "./i18n";
 import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
 import { selectPreferences } from "./redux/slices/authSlice";
-import { persistor } from "./redux/store";
+import ErrorStorageCache from "./pages/ErrorStorageCache";
 
 function App() {
   const { i18n } = useTranslation();
@@ -69,11 +69,7 @@ function App() {
       </div>
     );
   } catch (e) {
-    console.log(e);
-    // Clear cache / storage
-    persistor.purge().then(() => {
-      window.location.reload();
-    });
+    return <ErrorStorageCache />;
   }
 }
 
