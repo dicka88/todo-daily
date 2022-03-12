@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { I18nextProvider } from "react-i18next";
 import { useTranslation } from "react-i18next";
@@ -71,8 +71,9 @@ function App() {
   } catch (e) {
     console.log(e);
     // Clear cache / storage
-    persistor.purge();
-    window.location.reload();
+    persistor.purge().then(() => {
+      window.location.reload();
+    });
   }
 }
 
