@@ -43,9 +43,9 @@ export default function Appbar() {
       >
         <BsList color="white" size={30} />
       </button>
-      <div className="font-bold">
+      <div className="font-bold flex items-center">
         <Link to="/app">
-          <img className="max-h-[30px]" src="/logo-white.png" alt="" />
+          <img className="max-h-[22px] md:max-h-[25px]" src="/logo-white.png" alt="" />
         </Link>
       </div>
       <ProfileDropdown />
