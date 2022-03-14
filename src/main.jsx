@@ -7,6 +7,7 @@ import store, { persistor } from "./redux/store";
 import App from "./App";
 import LoadingScreen from "./components/LoadingScreen";
 
+import 'react-toastify/dist/ReactToastify.css';
 // CSS
 import "./styles/index.css";
 
