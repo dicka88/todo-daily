@@ -16,7 +16,7 @@ export default function Footer() {
             </div>
             <div>
               <p>DK Tech Company</p>
-              <p className="text-gray">Uma street, Lost City, Aincard, World</p>
+              <p className="text-gray">Klaten, Central Java, Indonesia</p>
             </div>
           </div>
           <div className="flex gap-10 flex-wrap md:justify-end">
@@ -26,16 +26,13 @@ export default function Footer() {
               </h2>
               <ul className="list-none">
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Realtime</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Unlimited</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
-                </li>
-                <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Sync</Link>
                 </li>
               </ul>
             </div>
@@ -45,16 +42,13 @@ export default function Footer() {
               </h2>
               <ul className="list-none">
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Business</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Organization</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
-                </li>
-                <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Personal</Link>
                 </li>
               </ul>
             </div>
@@ -64,16 +58,16 @@ export default function Footer() {
               </h2>
               <ul className="list-none">
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Signin</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">FAQ</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Guide</Link>
                 </li>
                 <li className='mb-2 text-gray hover:underline'>
-                  <Link to="/">Lorem</Link>
+                  <Link to="/">Pricing</Link>
                 </li>
               </ul>
             </div>
