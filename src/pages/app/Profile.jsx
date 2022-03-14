@@ -10,12 +10,12 @@ import Sidebar from "../../components/Sidebar";
 import Input from "../../components/ui/Input";
 import PrimaryButton from "../../components/ui/PrimaryButton";
 import SecondaryButton from "../../components/ui/SecondaryButton";
+import { toast } from "react-toastify";
 
 export default function Profile() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  // console.log(user);
 
   const [form, setForm] = useState({
     displayName: user.displayName,
@@ -34,6 +34,13 @@ export default function Profile() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
+    toast.success('🦄 Successful!', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+    });
+
     dispatch(
       fetchUpdateUser({
         uid: user.uid,
@@ -51,7 +58,7 @@ export default function Profile() {
           <div className="rounded-full mx-auto h-[100px] w-[100px] bg-graySoft border border-graySoft overflow-hidden">
             <img
               src={user.avatarURL}
-              alt=""
+              alt={user.displayName}
               className="object-fit w-full h-full"
             />
           </div>
@@ -73,6 +80,7 @@ export default function Profile() {
             <div className="mb-4">
               <label className="mb-2 font-semibold">{t("password")}</label>
               <Input
+                type="password"
                 name="password"
                 placeholder={t("passwordPlaceholder")}
                 value={form.password}
