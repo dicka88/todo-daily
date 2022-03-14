@@ -51,7 +51,7 @@ export default function Sidebar({ active = "today" }) {
         onClick={() => dispatch(setApp({ sidebarOpen: false }))}
       />
       <div
-        className={`relative bg-grayLight dark:bg-[#242424] left-0 top-0 md:top-[48px] ${sidebarOpen ? "" : "-translate-x-full invisible w-0"
+        className={`bg-grayLight dark:bg-[#242424] left-0 top-0 md:top-[48px] ${sidebarOpen ? "" : "-translate-x-full invisible w-0"
           } fixed md:static z-10 transition-all duration-300 py-4 md:py-8 p-6 w-[250px] h-full md:h-[calc(100vh-48px)]`}
       >
         <div className="md:hidden flex justify-end mb-4">
