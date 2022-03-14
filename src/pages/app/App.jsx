@@ -13,7 +13,7 @@ import TaskField from "../../components/TaskField";
 import TodoList from "../../components/TodoList";
 
 export default function App() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [addState, setAddState] = useState(false);
 
   const today = dayjs().format("YYYY-MM-DD");
