@@ -9,7 +9,7 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 const StepItem = ({ title, img }) => {
   return (
     <div className='text-center transition-all duration-200 hover:scale-105'>
-      <div className="mx-auto border-4 border-primary rounded-md flex items-center aspect-square max-w-[120px] p-6 mb-3">
+      <div className="mx-auto rounded-md flex items-center aspect-square max-w-[120px] border border-red-300 p-6 mb-3">
         <img className="mx-auto w-[70px] h-[70px]" src={img} alt={title} />
       </div>
       <span className="font-bold text-[1.2rem]">{title}</span>
@@ -22,8 +22,8 @@ export default function index() {
     <div className="container lg:max-w-[1280px] mx-auto">
       <Navbar />
 
-      <section className='pt-4 pb-12 relative'>
-        <div className="pt-8 text-center  absolute top-0 w-full">
+      <section className='pt-4 pb-12'>
+        <div className="pt-8 text-center w-full">
           <Fade bottom>
             <h1 className="text-lg leading-normal font-bold font-rosario text-[2rem] md:text-[40px] mb-4">
               Organizing your day activity <br />
@@ -36,13 +36,13 @@ export default function index() {
             </PrimaryButton>
           </Link>
         </div>
-        <div className='pt-12'>
-          <img className="w-full -pt-14" src="/hero.png" alt="" />
+        <div className="">
+          <img className="w-full" src="/hero.png" alt="" />
         </div>
       </section >
 
       <section className='py-4 text-center'>
-        <h1 className='text-lg font-bold text-[2rem] md:text-[40px] mb-6'>
+        <h1 className='font-bold text-[1.5rem] md:text-[30px] mb-6'>
           Don’t let your day doing nothing
         </h1>
         <div className="py-20">
