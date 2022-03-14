@@ -35,6 +35,10 @@ const TodoList = ({ id, task, description, completed }) => {
     );
   };
 
+  const handleArchive = (id) => {
+    window.alert("Coming soon");
+  };
+
   const handleRemove = (id) => {
     dispatch(fetchRemoveTodo(id));
   };
@@ -85,9 +89,8 @@ const TodoList = ({ id, task, description, completed }) => {
             onChange={() => handleCheckboxChanged(id, completed)}
           />
           <div
-            className={`${
-              completed ? "bg-primary" : "bg-white dark:bg-zinc-800"
-            } border-2 rounded-md border-primary w-6 h-6 flex flex-shrink-0 justify-center items-center focus-within:border-primaryDark cursor-pointer`}
+            className={`${completed ? "bg-primary" : "bg-white dark:bg-zinc-800"
+              } border-2 rounded-md border-primary w-6 h-6 flex flex-shrink-0 justify-center items-center focus-within:border-primaryDark cursor-pointer`}
           >
             <svg
               className="fill-current opacity-0 transition-all duration-200 w-3 h-3 text-blue-600 pointer-events-none"
@@ -115,9 +118,8 @@ const TodoList = ({ id, task, description, completed }) => {
         </div>
         <div
           ref={dropdownRef}
-          className={`flex items-center text-gray transition-all duration-200 ${
-            dropdownOpen ? "" : "md:opacity-0"
-          } group-hover:opacity-100`}
+          className={`flex items-center text-gray transition-all duration-200 ${dropdownOpen ? "" : "md:opacity-0"
+            } group-hover:opacity-100`}
         >
           <button
             className="rounded-full p-2 transition-colors duration-300 hover:bg-graySoft"
@@ -133,14 +135,15 @@ const TodoList = ({ id, task, description, completed }) => {
           </button>
           <div className="relative">
             <div
-              className={`absolute z-10 top-4 rounded-md right-0 border border-graySoft transition-all duration-400 bg-white ${
-                dropdownOpen ? "visible opacity-100" : "invisible opacity-0"
-              }`}
+              className={`absolute z-10 top-4 rounded-md right-0 border border-graySoft transition-all duration-400 bg-white ${dropdownOpen ? "visible opacity-100" : "invisible opacity-0"
+                }`}
             >
-              <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
-                <BsArchive size={16} className="mr-4 inline" />
-                <span>{t("archive")}</span>
-              </div>
+              <button className="w-full" onClick={() => handleArchive(id)}>
+                <div className="px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
+                  <BsArchive size={16} className="mr-4 inline" />
+                  <span>{t("archive")}</span>
+                </div>
+              </button>
               <button className="w-full" onClick={() => handleRemove(id)}>
                 <div className="text-primary px-4 hover:bg-graySoft cursor-pointer py-2 flex items-center">
                   <BsFillTrashFill size={16} className="mr-4 inline" />
