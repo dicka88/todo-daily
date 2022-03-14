@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { persistor } from "../redux/store";
 
 export default function ErrorStorageCache() {
