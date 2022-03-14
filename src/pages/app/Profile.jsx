@@ -50,7 +50,7 @@ export default function Profile() {
         <div className="container max-w-screen-sm py-8 px-12">
           <div className="rounded-full mx-auto h-[100px] w-[100px] bg-graySoft border border-graySoft overflow-hidden">
             <img
-              src={user.photoURL}
+              src={user.avatarURL}
               alt=""
               className="object-fit w-full h-full"
             />

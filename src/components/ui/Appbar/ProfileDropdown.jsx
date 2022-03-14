@@ -58,21 +58,20 @@ export default function ProfileDropdown() {
       <OutsideClickHandler onOutsideClick={() => open && toggleOpen()}>
         <button onClick={toggleOpen}>
           <div className="h-[35px] w-[35px] rounded-full bg-graySoft">
-            <img className="rounded-full max-h-[35px]" src={user.photoURL} />
+            <img className="rounded-full max-h-[35px]" src={user.avatarURL} />
           </div>
         </button>
         <div className="relative">
           <div
-            className={`absolute rounded-lg right-0 border top-2 border-graySoft dark:border-zinc-700 shadow-stone-300 dark:shadow-zinc-800 shadow-lg transition-all z-10 duration-400 min-w-[200px] bg-white dark:bg-black dark:text-white ${
-              open ? "visible opacity-100" : "invisible opacity-0"
-            }`}
+            className={`absolute rounded-lg right-0 border top-2 border-graySoft dark:border-zinc-700 shadow-stone-300 dark:shadow-zinc-800 shadow-lg transition-all z-10 duration-400 min-w-[200px] bg-white dark:bg-black dark:text-white ${open ? "visible opacity-100" : "invisible opacity-0"
+              }`}
           >
             <div className="flex items-center ro p-4 border-b border-graySoft">
               <div className="mr-4">
                 <div className="h-[35px] w-[35px] rounded-full bg-graySoft">
                   <img
                     className="rounded-full max-h-[35px]"
-                    src={user.photoURL}
+                    src={user.avatarURL}
                   />
                 </div>
               </div>
@@ -86,23 +85,20 @@ export default function ProfileDropdown() {
               onClick={handleToggleDarkMode}
             >
               <div
-                className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
-                  !preferences.darkMode && "text-white"
-                } `}
+                className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${!preferences.darkMode && "text-white"
+                  } `}
               >
                 {t("light")}
               </div>
               <div
-                className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${
-                  preferences.darkMode && "text-black"
-                }`}
+                className={`px-2 w-full py-1 rounded-lg text-center z-[2] ${preferences.darkMode && "text-black"
+                  }`}
               >
                 {t("dark")}
               </div>
               <span
-                className={`absolute transition-transform duration-300 bg-black dark:bg-white top-0 bottom-0 w-1/2 rounded-lg ${
-                  preferences.darkMode && "translate-x-full"
-                }`}
+                className={`absolute transition-transform duration-300 bg-black dark:bg-white top-0 bottom-0 w-1/2 rounded-lg ${preferences.darkMode && "translate-x-full"
+                  }`}
               />
             </div>
             <Link to="/app/profile">
