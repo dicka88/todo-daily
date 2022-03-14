@@ -13,7 +13,8 @@ import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
 
 import { selectSidebarOpen, setApp } from "../redux/slices/appSlice";
-import AboutAppModal from "./modals/AboutAppModal";
+import Modal from "./modals/Modal";
+import { Dialog } from "@headlessui/react";
 
 export default function Sidebar({ active = "today" }) {
   const { t } = useTranslation();
@@ -100,7 +101,27 @@ export default function Sidebar({ active = "today" }) {
           <button className="text-primary" onClick={() => setAboutModalOpen(true)}>
             About
           </button>
-          <AboutAppModal open={aboutModalOpen} setIsOpen={setAboutModalOpen} />
+          <Modal open={aboutModalOpen} title="About Todo Daily" setIsOpen={setAboutModalOpen}>
+            <div className="pb-6">
+              <Dialog.Description>Todo Daily is inspired by Todoist</Dialog.Description>
+              <Dialog.Description >
+                Created by <a href="https://github.com/dicka88" className='text-primary'> Dicka Ismaji </a>
+              </Dialog.Description>
+            </div>
+            <div className="pb-6">
+              <p>Technology: </p>
+              <ol className="list-decimal list-inside">
+                <li>React</li>
+                <li>Tailwindcss</li>
+                <li>@headlessui/react</li>
+                <li>Firebase</li>
+                <li>Redux</li>
+                <li>Redux Persist</li>
+                <li>i18next</li>
+              </ol>
+            </div>
+            <p>You can contribute this project at <a href="https://github.com/dicka88/todo-daily" className='text-primary' target="_blank">Github</a></p>
+          </Modal>
         </div>
       </div>
     </>
