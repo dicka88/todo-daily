@@ -21,6 +21,7 @@ import { selectLoadingState } from "./redux/slices/appSlice";
 import LoadingScreen from "./components/LoadingScreen";
 import { selectPreferences } from "./redux/slices/authSlice";
 import ErrorStorageCache from "./pages/ErrorStorageCache";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { i18n } = useTranslation();
@@ -47,6 +48,7 @@ function App() {
     return (
       <div className="dark:bg-zinc-900 dark:text-white transition-colors duration-300 min-h-screen">
         <I18nextProvider i18n={i18nRoot}>
+          <ToastContainer />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<WhenAuth children={<IndexPage />} />} />
