@@ -9,8 +9,8 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 const StepItem = ({ title, img }) => {
   return (
     <div className='text-center transition-all duration-200 hover:scale-105'>
-      <div className="mx-auto rounded-md flex items-center aspect-square max-w-[120px] border border-red-300 p-6 mb-3">
-        <img className="mx-auto w-[70px] h-[70px]" src={img} alt={title} />
+      <div className="mx-auto rounded-md flex items-center aspect-square max-w-[150px] bg-[#ffefef] p-6 mb-3">
+        <img className="mx-auto w-[80px] h-[80px]" src={img} alt={title} />
       </div>
       <span className="font-bold text-[1.2rem]">{title}</span>
     </div>
